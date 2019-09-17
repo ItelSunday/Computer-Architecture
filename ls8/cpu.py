@@ -13,6 +13,15 @@ class CPU:
         self.reg = [0] * 8
         # initialize pc to increment
         self.pc = 0
+        
+    def ram_read(self, MAR):
+        #accept the address to read and return the value
+        return self.ram[MAR]
+    
+    def ram_write(self, MDR, MAR):
+        #accepts a value to write and the adrress to write it to
+        #MDR = Memory Data Register | MAR = Memory Address Register
+        self.ram[MAR] = MDR
 
     def load(self):
         """Load a program into memory."""
