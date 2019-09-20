@@ -29,21 +29,6 @@ class CPU:
 
         address = 0
 
-        # For now, we've just hardcoded a program:
-
-        # program = [
-        #     # From print8.ls8
-        #     0b10000010, # LDI R0,8
-        #     0b00000000,
-        #     0b00001000,
-        #     0b01000111, # PRN R0
-        #     0b00000000,
-        #     0b00000001, # HLT
-        # ]
-
-        # for instruction in program:
-        #     self.ram[address] = instruction
-        #     address += 1
         if len(sys.argv) != 2:
             print(f"usage: {sys.argv[0]} filename")
             sys.exit(1)
@@ -92,6 +77,7 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
+        #operation handle without ALU
         LDI = 0b10000010
         PRN = 0b01000111
         HLT = 0b00000001
@@ -114,7 +100,11 @@ class CPU:
             operand_b = self.ram_read(self.pc+2)
 
              # mask and shift to determiner number of operands
-            num_operands  = (ir & 0b11000000) >> 6
+            num_operands  = (ir & 0b11000000) >> 5
+            alu_handle = (ir & 0b00100000) >> 5
+
+            if alu_handle:
+                self.alu(ir, operand_a, operand_b
 
             #TODO it has two operands
             if ir == LDI:
