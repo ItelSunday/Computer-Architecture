@@ -64,7 +64,18 @@ class CPU:
             sys.exit(2)
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
-@@ -74,46 +80,58 @@
+         #operation handled within ALU
+        MUL = 0b10100010
+        ADD = 0b10100000
+        SUB = 0b10100001
+        DIV = 0b10100011
+        XOR = 0b10101011
+        SHR = 0b10101101
+        SHL = 0b10101100
+
+        if op == ADD:
+            self.reg[reg_a] += self.reg[reg_b]
+        # elif op == "SUB": etc
         elif op == MUL:
             self.reg[reg_a] *= self.reg[reg_b]
         elif op == SUB:
@@ -82,6 +93,7 @@ class CPU:
         from run() if you need help debugging.
         """
         print(f"TRACE: %02X | %02X %02X %02X |" % (
+
             self.pc,
             #self.fl,
             #self.ie,
