@@ -25,6 +25,8 @@ class CPU:
         self.branch_table[0b00000001] = self.handle_hlt
         self.branch_table[0b01000101] = self.handle_push
         self.branch_table[0b01000110] = self.handle_pop
+        self.branch_table[0b00010001] = self.handle_ret
+        self.branch_table[0b01010000] = self.handle_call
 
         
         
